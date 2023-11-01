@@ -12,7 +12,7 @@
     ?>
 
     <div class="w-full h-screen bg-image flex flex-col justify-center">
-        <div class="mx-5 md:mx-none">
+        <div class="mx-5 md:mx-none fade-in">
             <div class="md:mb-44 md:pb-10 md:ml-24">
                 <h1 class="md:text-4xl font-bold italic bg-clip-text text-transparent bg-gradient-to-l from-slate-600 to-[#864A27]">"Depression is being colorblind and constantly <br class="hidden md:block">told how colorful the world is." <span class="text-xs md:text-lg text-slate-100 font-bold"><br>- Atticus Poetry</span></h1>
             </div>
@@ -30,6 +30,19 @@
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+            opacity: 0;
+            }
+            to {
+            opacity: 1;
+            }
         }
     </style>
 </body>

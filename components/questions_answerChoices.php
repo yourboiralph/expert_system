@@ -121,8 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         include '../components/navbar.php';
     ?>
     <div class="w-full h-screen bg-image flex flex-col justify-center items-center">
-        <form class="p-5 shadow-2xl shadow-slate-800 text-xs md:text-3xl bg-black bg-opacity-50 rounded-2xl" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
-        <strong class="text-slate-400 text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-yellow-500 text-xs md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
+        <form class="p-5 shadow-2xl shadow-slate-800 text-xs md:text-3xl bg-black bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
+        <strong class="text-slate-400 font-thin md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-yellow-500 text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
 
             <?php
                 foreach ($answerChoices[$currentQuestion] as $index => $choice) {
@@ -134,10 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="flex justify-evenly mt-4 md:text-sm">
                 <?php
                     if ($currentQuestion > 0) {
-                        echo '<a href="?question=' . $previousQuestion . '" class="border-2 border-white text-white p-2 rounded-xl hover:border-green-300 hover:bg-green-300  duration-500">Previous</a> ';
+                        echo '<a href="?question=' . $previousQuestion . '" class="bg-white bg-opacity-50 text-white p-2 rounded-xl hover:bg-green-300 duration-500">Previous</a> ';
                     }
                     if ($currentQuestion < count($questions) - 1) {
-                        echo '<button type="submit" name="next" class="bg-white p-2 rounded-xl font-semibold hover:text-white hover:bg-green-300 duration-500">Next</button> ';
+                        echo '<button type="submit" name="next" class="bg-white px-2 md:p-2 rounded-xl md:font-semibold hover:text-white hover:bg-green-300 duration-500">Next</button> ';
                     } else {
                         echo '<input type="submit" name="submit" value="Submit Answers" class="bg-green-300 p-2 rounded-xl font-bold hover:text-white hover:bg-green-600 duration-500">';
                     }
@@ -154,6 +154,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+            opacity: 0;
+            }
+            to {
+            opacity: 1;
+            }
         }
     </style>
 

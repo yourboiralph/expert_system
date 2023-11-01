@@ -45,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Get Started</title>
 </head>
 <body class="bg-image flex justify-center items-center h-screen">
-<div class="bg-black bg-opacity-60 p-4 rounded-lg shadow-md">
+<div class="bg-black bg-opacity-60 p-4 rounded-lg shadow-md fade-in">
     <form method="post" action="">
-        <h1 class="text-4xl font-bold text-white mb-5">Before we begin<span class="text-base flex text-white font-thin">please choose whether you would like to proceed anonymously <br>or provide your information.</span></h1>
+        <h1 class="md:text-4xl font-bold text-white mb-5">Before we begin<span class="md:text-base flex text-white font-thin leading-none">please choose whether you would like to proceed anonymously <br class="md:block hidden">or provide your information.</span></h1>
         <div class="w-64 mx-auto font-bold text-white">
             <label for="firstname">First name</label><br>
             <input type="text" id="firstname" name="firstname" class="w-62 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent" oninput="validateInput(this)"><br>
@@ -71,6 +71,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
+    .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+            opacity: 0;
+            }
+            to {
+            opacity: 1;
+            }
+        }
 </style>
 
 <script>
