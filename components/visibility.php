@@ -6,10 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $visibility = $_POST['visibility'];
 
         if ($visibility == 'Skip') {
-            // Set session visibility to 'private' and redirect
             $_SESSION['visibility'] = 'private';
             header("location: questions_answerChoices.php");
-            exit(); // Ensure exit after redirection
+            exit();
         } elseif ($visibility == 'Submit') {
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
@@ -24,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Age must be 10 or greater.</h3>
                 </div>';
             } elseif ($age <= 90) {
-                // Set session visibility to 'public' and redirect
                 $_SESSION['visibility'] = 'public';
                 header("location: questions_answerChoices.php");
                 exit();

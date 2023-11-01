@@ -172,10 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       });
     }
 
-    // Initial update
     updateTextColor();
 
-    // Listen for changes in radio button selection
     radioButtons.forEach((radio, index) => {
       radio.addEventListener('change', function () {
         updateTextColor();
