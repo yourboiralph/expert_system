@@ -6,12 +6,12 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="../dist/output.css">
-    <title>Registration</title>
+    <title>login</title>
 </head>
-<body>
-    <section class="bg-gray-100 min-h-screen flex items-center justify-center">
+<body class="bg-image">
+    <section class="min-h-screen flex items-center justify-center fade-in">
 
-        <div class="bg-orange-300 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+        <div class="bg-orange-300 bg-opacity-20 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
 
             <div class="sm:w-1/2 px-8">
                 <h2 class="font-bold text-2xl text-[#1F0805]">Login</h2>
@@ -52,5 +52,29 @@
             </div>
         </div>
     </section>
+
+    <style>
+        .bg-image {
+            background-image: url('../img/login.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+            opacity: 0;
+            }
+            to {
+            opacity: 1;
+            }
+        }
+        
+    </style>
 </body>
 </html>

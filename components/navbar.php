@@ -21,7 +21,7 @@
             <li><a href="/Appdev/index.php" class="hover:text-[#B8764B] text-white md:text-white duration-500 md:hover:text-[#B8764B] button">Home</a></li>
             <li><a href="about.php" class="hover:text-[#B8764B] text-white md:text-white duration-500 md:hover:text-[#B8764B] button">About us</a></li> 
             <li><a href="contact.php" class="hover:text-[#B8764B] text-white md:text-white duration-500 md:hover:text-[#B8764B] button">Contact us</a></li>
-            <button class="shadow-[#B8764B] p-2 rounded-2xl hover:scale-125 duration-300 text-[#B8764B] hover:text-[#DAC5B7]"><a href="./components/login.php">Login</a></button>
+            <button class="shadow-[#B8764B] p-2 rounded-2xl hover:scale-125 duration-300 text-[#B8764B] hover:text-[#DAC5B7]"><a href="/Appdev/components/login.php">Login</a></button>
         </ul>
     </nav>
 

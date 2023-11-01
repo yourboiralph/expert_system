@@ -23,6 +23,10 @@
         </div>
     </div>
 
+        <?php 
+            include './components/footer.php';    
+        ?>
+
     <style>
         .bg-image {
             background-image: url('./img/gloom1.jpg');
@@ -44,6 +48,7 @@
             opacity: 1;
             }
         }
+        
     </style>
 </body>
 </html>
