@@ -11,7 +11,7 @@
 <body class="bg-image">
     <section class="min-h-screen flex items-center justify-center fade-in">
 
-        <div class="bg-orange-300 bg-opacity-50 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+        <div class="bg-orange-300 bg-opacity-20 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
 
             <div class="sm:w-1/2 px-8">
                 <h2 class="font-bold text-2xl text-[#1F0805]">Register</h2>
@@ -40,7 +40,7 @@
 
     <style>
         .bg-image {
-            background-image: url('../img/register1.jpg');
+            background-image: url('../img/help1.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;

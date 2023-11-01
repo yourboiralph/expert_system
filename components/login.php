@@ -55,7 +55,7 @@
 
     <style>
         .bg-image {
-            background-image: url('../img/login.jpg');
+            background-image: url('../img/help.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
