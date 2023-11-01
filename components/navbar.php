@@ -9,7 +9,7 @@
     <title>Navbar</title>
 </head>
 <body>
-    <nav class="p-2 shadow-md fixed w-full md:p-5 md:py-0 md:flex md:items-center md:justify-between fade-in">
+    <nav class="p-2 shadow-md fixed w-full md:p-5 md:py-0 md:flex md:items-center md:justify-between">
         <div class="flex justify-between items-center ml-10">
             <a href="/Appdev/index.php"><img src="/Appdev/img/untangled1.png" alt="Untangled" class="w-[30%] h-[30%] md:w-[30%] md:h-[15%]"></a>
             
