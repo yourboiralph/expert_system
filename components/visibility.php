@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="bg-image flex justify-center items-center h-screen">
     <div class="bg-white p-4 border-2 border-red-600 rounded-lg shadow-md text-center form-container">
         <form method="post" action="">
-            <h1 class="text-4xl font-bold">Before we begin <br>please choose whether you would like to proceed anonymously or provide your information.</h1>
+            <h1 class="text-4xl font-bold">Before we begin <br><span class="text-sm">please choose whether you would like to proceed anonymously or provide your information.</span></h1>
             <div class="border-2 border-red-600 w-60">
                 <label for="firstname">First name</label><br>
                 <input type="text" id="firstname" name="firstname" class="w-56 px-4 mt-1 border rounded-lg"><br>
