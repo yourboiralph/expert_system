@@ -35,20 +35,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <title>Get Started</title>
     </head>
 <body class="bg-image flex justify-center items-center h-screen">
-    <div class="bg-white p-4 border-2 border-red-600 rounded-lg shadow-md text-center form-container">
+    <div class="bg-black bg-opacity-60 p-4 rounded-lg shadow-md">
         <form method="post" action="">
-            <h1 class="text-4xl font-bold">Before we begin <br><span class="text-sm">please choose whether you would like to proceed anonymously or provide your information.</span></h1>
-            <div class="border-2 border-red-600 w-60">
+            <h1 class="text-4xl font-bold text-white mb-5">Before we begin<span class="text-base flex text-white font-thin">please choose whether you would like to proceed <br>anonymously or provide your information.</span></h1>
+            <div class="w-64 mx-auto font-bold text-white">
                 <label for="firstname">First name</label><br>
-                <input type="text" id="firstname" name="firstname" class="w-56 px-4 mt-1 border rounded-lg"><br>
+                <input type="text" id="firstname" name="firstname" class="w-62 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent"><br>
                 <label for="lastname">Last name</label><br>
-                <input type="text" id="lastname" name="lastname" class="w-56 px-4 mt-1 border rounded-lg"><br>
+                <input type="text" id="lastname" name="lastname" class="w-62 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent"><br>
                 <label for="age">Age</label><br>
-                <input type="text" id="age" name="age" class="w-56 px-4 mt-1 border rounded-lg"><br>
+                <input type="text" id="age" name="age" class="w-16 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent"><br>
             </div>
-            <div class="mt-4 button-container">
-                <input type="submit" name="visibility" value="Submit" class="px-4 py-2 border-2 border-red-600 rounded-lg bg-red-600 text-white cursor-pointer">
-                <input type="submit" name="visibility" value="Skip" class="px-4 py-2 border-2 border-red-600 rounded-lg cursor-pointer">
+            <div class="mt-4 flex justify-end space-x-5">
+                <input type="submit" name="visibility" value="Submit" class="p-2 rounded-lg cursor-pointer hover:bg-opacity-40 hover:bg-yellow-500 hover:text-white hover:scale-110">
+                <input type="submit" name="visibility" value="Skip" class="p-2 rounded-lg cursor-pointer">
             </div>
         </form>
     </div>
