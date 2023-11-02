@@ -23,13 +23,13 @@ try {
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('sheanluisralph@gmail.com', 'Ralph');
-    $mail->addAddress('hernandezralphbooc@gmail.com', 'Joe User');     //Add a recipient
+    $mail->setFrom('sheanluisralph@gmail.com', 'Depression Test');
+    $mail->addAddress($_SESSION['email']);     //Add a recipient
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Your results!';
-    $mail->Body    = 'RALPH NA RECIEVE NA NIMO??This is the HTML message body <b>in bold!</b>';
+    $mail->Body    = 'Your depression score is <b>' . $_SESSION['totalScore']; '</b>';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
