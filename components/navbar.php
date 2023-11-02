@@ -10,12 +10,11 @@
 </head>
 <body>
     <?php
-        // $isIncludedInAboutUs = (basename($_SERVER['PHP_SELF']) === 'aboutus.php');
+        $isIncludedInAboutUs = (basename($_SERVER['PHP_SELF']) === 'aboutus.php');
         // $textColorClass = $isIncludedInAboutUs ? 'text-slate-600' : 'text-white';
-        // echo $isIncludedInAboutUs ? 'bg-white' : '';
         // echo $textColorClass;
     ?>
-    <nav class="p-2 shadow-md fixed w-full md:p-5 md:py-0 md:flex md:items-center md:justify-between ">
+    <nav class="p-2 shadow-md fixed w-full <?php echo $isIncludedInAboutUs ? 'bg-white bg-opacity-70' : ''; ?> md:p-5 md:py-0 md:flex md:items-center md:justify-between">
         <div class="flex justify-between items-center ml-10">
             <a href="/Appdev/index.php"><img src="/Appdev/img/untangled1.png" alt="Untangled" class="w-[30%] h-[30%] md:w-[30%] md:h-[15%]"></a>
             
@@ -26,7 +25,7 @@
         <ul class="text-xs text-center font-bold mt-0 mr-4 right-7 grid gap-y-4 z-[40] absolute rounded-3xl p-5 opacity-0 top-[-400px] transition-all ease-in duration-500 md:text-lg md:flex md:mt-0 md:items-center md:flex-row md:gap-x-10 md:z-auto md:static md:w-auto md:opacity-100">
             <li><a href="/Appdev/index.php" class="hover:text-[#B8764B] duration-500 md:hover:text-[#B8764B] button">Home</a></li>
             <li><a href="/Appdev/components/aboutus.php" class="hover:text-[#B8764B] duration-500 md:hover:text-[#B8764B] button">About us</a></li> 
-            <li><a href="contact.php" class="hover:text-[#B8764B] duration-500 md:hover:text-[#B8764B] button">Contact us</a></li>
+            <!-- <li><a href="contact.php" class="hover:text-[#B8764B] duration-500 md:hover:text-[#B8764B] button">Contact us</a></li> -->
             <button class="shadow-[#B8764B] p-2 rounded-2xl hover:scale-125 duration-300 text-[#B8764B] hover:text-[#DAC5B7]"><a href="/Appdev/components/login.php">Login</a></button>
         </ul>
     </nav>
