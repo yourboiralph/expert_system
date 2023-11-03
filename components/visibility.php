@@ -10,13 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("location: questions_answerChoices.php");
             exit();
         } elseif ($visibility == 'Submit') {
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $age = $_POST['age'];
-
-            if (empty($firstname) || empty($lastname) || empty($age)) {
+            if(isset($_POST['email'])){
+                $_SESSION['visibility'] = 'public';
+                $_SESSION['email'] = $_POST['email']; 
+                $_SESSION['firstname'] = $_POST['firstname']; 
+                $_SESSION['lastname'] = $_POST['lastname'];
+                header("location: questions_answerChoices.php");
+                exit(); 
+            } elseif (empty($firstname) || empty($lastname) || empty($age) || empty($email)) {
                 echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
-                    <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Please fill in all the required fields (First name, Last name, Age) before submitting.</h3>
+                    <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Please fill in all the required fields (First name, Last name, Email Address, Age) before submitting.</h3>
                 </div>';
             } elseif ($age < 10) {
                 echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
@@ -53,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="firstname" name="firstname" class="w-62 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent" oninput="validateInput(this)"><br>
             <label for="lastname">Last name</label><br>
             <input type="text" id="lastname" name="lastname" class="w-62 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent" oninput="validateInput(this)"><br>
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" class="w-62 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent" oninput="validateInput(this)"><br>
             <label for="age">Age</label><br>
             <input type="number" id="age" name="age" value="0" class="w-32 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent" oninput="validateAge(this)"><br>
         </div>

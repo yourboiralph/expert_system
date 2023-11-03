@@ -105,7 +105,14 @@ class UserFactory {
 
 
 // from the client
-$user = UserFactory::getDetails($_SESSION['visibility'], 'public', 'public', 'public@123', '123', [$_SESSION['totalScore']]);
+$visibility = isset($_SESSION['visibility']) ? $_SESSION['visibility'] : '';
+$first_name = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
+$last_name = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+$total_score = isset($_SESSION['totalScore']);
+
+$user = UserFactory::getDetails($visibility, $first_name, $last_name, $email, '123', [$_SESSION['totalScore']]);
+
 
 // get the Database singleton instance
 $db = Database::getInstance();
