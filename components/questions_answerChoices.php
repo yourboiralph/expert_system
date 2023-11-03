@@ -127,7 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php
                 foreach ($answerChoices[$currentQuestion] as $index => $choice) {
                     $checked = isset($_SESSION['answers'][$currentQuestion]) && $_SESSION['answers'][$currentQuestion] == $index ? 'checked' : '';
-                    echo '<input type="radio" name="question_' . $currentQuestion . '"value="' . $index . '" ' . $checked . '> <span class="text-white text-xs md:text-lg">' . $choice . "</span><br>";
+                    $radioId = 'radio_' . $currentQuestion . '_' . $index;
+                    echo '<input type="radio" id="' . $radioId . '" name="question_' . $currentQuestion . '" value="' . $index . '" ' . $checked . '>';
+                    echo '<label for="' . $radioId . '" class="text-white text-xs md:text-lg">' . $choice . '</label><br>';
                 }
             ?>
 
