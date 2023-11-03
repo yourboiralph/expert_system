@@ -17,6 +17,17 @@
             Users
         </h1>
     </div>
+    <p>
+        <?php
+        if (isset($_GET['update-success'])) {
+            echo 'Successfully updated';
+        }
+
+        if (isset($_GET['delete-success'])) {
+            echo 'Successfully deleted';
+        }
+        ?>
+    </p>
     
     <a href="../">
         <button>
