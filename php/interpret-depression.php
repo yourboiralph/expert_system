@@ -3,18 +3,19 @@ session_start();
 
 // base class
 abstract class User {
-    protected $totalScore;
-    protected $depressionLevel;
     protected $firstname = '';
     protected $lastname = '';
+    protected $age = '';
     protected $email = '';
+    protected $totalScore;
+    protected $depressionLevel;
 
     // setters 
-    public function __construct(string $firstname, string $lastname, string $email, int $number) {
+    public function __construct(string $firstname, string $lastname, string $email, string $age, int $number) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->email = $email;
-        $this->totalScore = 0;
+        $this->age = $age;
         $this->totalScore = $number;
 
 
@@ -57,6 +58,9 @@ abstract class User {
     public function getLastName() {
         return $this->lastname;
     }
+    public function getAge() {
+        return $this->age;
+    }
     public function getEmail() {
         return $this->email;
     }
@@ -71,7 +75,7 @@ class PrivateUser extends User {
     
     public function __construct (int $number) {
         $this->totalScore = 0;
-    $this->totalScore = $number;
+        $this->totalScore = $number;
 
 
         // calculate depression level when the object is constructed
@@ -80,11 +84,11 @@ class PrivateUser extends User {
 }
 
 class UserFactory {
-    public static function getDetails(string $type, string $firstname, string $lastname, string $email, int $number) {
+    public static function getDetails(string $type, string $firstname, string $lastname, string $email, string $age, int $number) {
         if ($type === "private") {
             return new PrivateUser($number);
         } elseif ($type === "public") {
-            return new PublicUser($firstname, $lastname, $email, $number);
+            return new PublicUser($firstname, $lastname, $email, $age, $number);
         } else {
             throw new Exception("Invalid user type or incorrect number of arguments for user type: $type");
         }

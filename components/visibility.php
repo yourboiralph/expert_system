@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($visibility == 'Submit') {
             if(isset($_POST['email'])){
                 $_SESSION['visibility'] = 'public';
-                $_SESSION['email'] = $_POST['email']; 
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['age'] = $_POST['age'];  
                 $_SESSION['firstname'] = $_POST['firstname']; 
                 $_SESSION['lastname'] = $_POST['lastname'];
                 header("location: questions_answerChoices.php");

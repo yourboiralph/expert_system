@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $_SESSION['totalPoints'] = isset($_SESSION['totalPoints']) ? $_SESSION['totalPoints'] : 0;
             $_SESSION['totalScore'] = $_SESSION['totalPoints'];
-            header('Location: ../php/main.php');
+            header('Location: ../php/save-user.php');
             exit();
         }
     } elseif (isset($_POST['reset'])) {

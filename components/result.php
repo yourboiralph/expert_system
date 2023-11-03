@@ -1,7 +1,5 @@
 <?php
 session_start();
-require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/config/database.php';
-
 // Rest of your result.php code
 $firstName = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
 $lastname = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
@@ -9,8 +7,6 @@ $totalScore = isset($_SESSION['totalScore']) ? $_SESSION['totalScore'] : '';
 $depressionLevel = isset($_SESSION['depressionLevel']);
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
