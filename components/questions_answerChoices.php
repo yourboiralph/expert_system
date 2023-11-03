@@ -121,15 +121,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         include '../components/navbar.php';
     ?>
     <div class="w-full h-screen bg-image flex flex-col justify-center items-center">
-        <form class="p-5 w-auto shadow-2xl shadow-slate-800 text-xs md:w-7/12 md:text-3xl bg-black bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
-        <strong class="text-slate-400 font-thin md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-yellow-500 text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
+        <form class="p-5 w-auto shadow-2xl shadow-slate-800 text-xs md:w-7/12 md:text-3xl bg-white bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
+        <strong class="text-black font-light md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-[#99572C] text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
 
             <?php
                 foreach ($answerChoices[$currentQuestion] as $index => $choice) {
                     $checked = isset($_SESSION['answers'][$currentQuestion]) && $_SESSION['answers'][$currentQuestion] == $index ? 'checked' : '';
                     $radioId = 'radio_' . $currentQuestion . '_' . $index;
                     echo '<input type="radio" id="' . $radioId . '" name="question_' . $currentQuestion . '" value="' . $index . '" ' . $checked . '>';
-                    echo '<label for="' . $radioId . '" class="text-white text-xs md:text-lg">' . $choice . '</label><br>';
+                    echo '<label for="' . $radioId . '" class="text-black text-xs md:text-lg">' . $choice . '</label><br>';
                 }
             ?>
 
@@ -149,9 +149,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 
+    <?php 
+        include '../components/footer.php';    
+    ?>
+
     <style>
         .bg-image {
-            background-image: url('../img/sunflower.jpg');
+            background-image: url('../img/paper1.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -172,29 +176,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const radioButtons = document.querySelectorAll('input[type="radio"]');
-    const answerText = document.querySelectorAll('.text-white.text-xs');
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        const answerText = document.querySelectorAll('.text-black.text-xs');
 
-    function updateTextColor() {
-      answerText.forEach((text, index) => {
-        if (radioButtons[index].checked) {
-          text.classList.add('text-yellow-500');
-        } else {
-          text.classList.remove('text-yellow-500');
+        function updateTextColor() {
+        answerText.forEach((text, index) => {
+            if (radioButtons[index].checked) {
+            text.classList.add('text-red-600');
+            } else {
+            text.classList.remove('text-red-600');
+            }
+        });
         }
-      });
-    }
 
-    updateTextColor();
-
-    radioButtons.forEach((radio, index) => {
-      radio.addEventListener('change', function () {
         updateTextColor();
-      });
+
+        radioButtons.forEach((radio, index) => {
+        radio.addEventListener('change', function () {
+            updateTextColor();
+        });
+        });
     });
-  });
-</script>
+    </script>
 </body>
 </html>

@@ -18,11 +18,34 @@ $depressionLevel = isset($_SESSION['depressionLevel']);
     <link rel="stylesheet" href="../dist/output.css">
     <title>Your Result</title>
 </head>
-<body>
+<body class="bg-image h-screen">
     <div class="result-container">
         <h1>Your Depression Level</h1>
         <p>Name: <?php echo $firstName . " " . $lastname; ?></p>
         <p>Depression Level: <?php echo $totalScore . " " . $depressionLevel?></p>
     </div>
+
+    <style>
+        .bg-image {
+            background-image: url('../img/gloom1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+            opacity: 0;
+            }
+            to {
+            opacity: 1;
+            }
+        } 
+    </style>
 </body>
 </html>
