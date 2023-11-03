@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         include '../components/navbar.php';
     ?>
     <div class="w-full h-screen bg-image flex flex-col justify-center items-center">
-        <form class="p-5 shadow-2xl shadow-slate-800 text-xs md:text-3xl bg-black bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
+        <form class="p-5 w-auto shadow-2xl shadow-slate-800 text-xs md:w-7/12 md:text-3xl bg-black bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
         <strong class="text-slate-400 font-thin md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-yellow-500 text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
 
             <?php
