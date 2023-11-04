@@ -10,34 +10,19 @@ class UserModel {
         $this->conn = $this->db->getConnection();
     }
 
-    public function getUser($id) {
-        $sql = "SELECT * FROM users WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("s", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            return $result->fetch_assoc();
-        } else {
-            return null;
-        }
-    }
-
     public function deleteUser($id) {
         try {
             $sql = "DELETE FROM users WHERE id = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("s", $id);
     
-            if ($stmt->execute()) {
-                return true; 
-            } else {
-                return false; 
-            }
+            $success = $stmt->execute();
+            $stmt->close();
+            
+            return $success;
         } catch (Exception $e) {
-            die("An error occurred: " . $e->getMessage());
-            return false; 
+            error_log("An error occurred: " . $e->getMessage());
+            return false;
         }
     }
 
@@ -47,14 +32,13 @@ class UserModel {
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("ssisssi", $first_name, $last_name, $age, $email, $score, $depression_level, $id);
     
-            if ($stmt->execute()) {
-                return true; 
-            } else {
-                return false; 
-            }
+            $success = $stmt->execute();
+            $stmt->close();
+            
+            return $success;
         } catch (Exception $e) {
-            die("An error occurred: " . $e->getMessage());
-            return false; 
+            error_log("An error occurred: " . $e->getMessage());
+            return false;
         }
     }
 
@@ -62,14 +46,47 @@ class UserModel {
         try {
             $stmt = $this->conn->prepare("INSERT INTO users (first_name, last_name, age, email, total_score, depression_level) VALUES (?,?,?,?,?,?)");
             $stmt->bind_param("ssssss", $user->getFirstName(), $user->getLastName(), $user->getAge(), $user->getEmail(), $user->getTotalScore(), $user->getDepressionLvl());
-            $stmt->execute();
+            $success = $stmt->execute();
             $stmt->close();
-            $this->db->getConnection()->close();
-            return true; 
+            
+            return $success;
         } catch (Exception $e) {
-            die("An error occurred: " . $e->getMessage());
-            return false; 
+            error_log("An error occurred: " . $e->getMessage());
+            return false;
+        }
+    } 
+
+    public function viewUser($id) {
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
         }
     }
+    
+    public function viewUsers() {
+        $sql = "SELECT * FROM users";
+        $result = $this->conn->query($sql);
+    
+        if (!$result) {
+            error_log("Error: " . $this->conn->error);
+            return [];
+        }
+    
+        $data = [];
+    
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    
+        $result->close();
+        return $data;
+    }
 }
-?>

@@ -5,7 +5,7 @@ require_once 'interpret-depression.php';
 class UserController {
     public function viewUser($id) {
         $userModel = new UserModel();
-        return $userModel->getUser($id);
+        return $userModel->viewUser($id);
     }
 
     public function deleteUser($id) {
@@ -46,50 +46,66 @@ class UserController {
     }
 }
 
-$controller = new UserController();
-$action = '';
-$id = '';
+// simplifies routing
+function handleRequest() {
+    $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+    $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) || isset($_GET['id'])) {
-    $action = $_GET['action'];
-    $id = $_GET['id'];
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) || isset($_POST['id'])) {
-    $action = $_POST['action'];
-    $id = $_POST['id'];
+    $controller = new UserController();
+
+    switch ($action) {
+        case 'edit':
+            redirectToEdit($id);
+            break;
+        case 'update':
+            handleUpdate($controller);
+            break;
+        case 'create':
+            handleCreate($controller);
+            break;
+        case 'delete':
+            handleDelete($controller, $id);
+            break;
+        default:
+            echo "Invalid action";
+            break;
+    }
 }
 
-switch ($action) {
-    case 'edit':
-        header("location: ../admin/edit.php?id=$id&action=update");
-        exit;
-    case 'update':
-        if (isset($_POST["id"])) {
-            $id = $_POST["id"];
-            $first_name = $_POST["first_name"];
-            $last_name = $_POST["last_name"];
-            $age = $_POST["age"];
-            $email = $_POST["email"];
-            $score = $_POST["score"];
-            $depression_level = $_POST["depression_level"];
-            $controller->updateUser($id, $first_name, $last_name, $age, $email, $score, $depression_level);
-        } else {
-            header("location: ../admin?update-failed=true");
-        }
-        break;
-    case 'create':
-        $visibility = isset($_SESSION['visibility']) ? $_SESSION['visibility'] : '';
-        $first_name = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
-        $last_name = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
-        $age = isset($_SESSION['age']) ? $_SESSION['age'] : '';
-        $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
-        $total_score = ($_SESSION['totalScore']);
-
-        $controller->createUser($visibility, $first_name, $last_name, $email, $age, $total_score);
-        break;
-    case 'delete':
-        $controller->deleteUser($id);
-        break;
-    default:
-        echo "invalid action";
-        break;
+function redirectToEdit($id) {
+    header("location: ../admin/edit.php?id=$id&action=update");
+    exit;
 }
+
+function handleUpdate($controller) {
+    if (isset($_POST["id"])) {
+        $id = $_POST["id"];
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
+        $age = $_POST["age"];
+        $email = $_POST["email"];
+        $score = $_POST["score"];
+        $depression_level = $_POST["depression_level"];
+        $controller->updateUser($id, $first_name, $last_name, $age, $email, $score, $depression_level);
+    } else {
+        header("location: ../admin?update-failed=true");
+    }
+}
+
+function handleCreate($controller) {
+    $visibility = isset($_SESSION['visibility']) ? $_SESSION['visibility'] : '';
+    $first_name = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
+    $last_name = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
+    $age = isset($_SESSION['age']) ? $_SESSION['age'] : '';
+    $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+    $total_score = isset($_SESSION['totalScore']) ? $_SESSION['totalScore'] : 0;
+
+    $controller->createUser($visibility, $first_name, $last_name, $email, $age, $total_score);
+}
+
+function handleDelete($controller, $id) {
+    $controller->deleteUser($id);
+}
+
+// calls the request handler
+handleRequest();

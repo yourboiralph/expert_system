@@ -14,7 +14,7 @@
         require ('../php/user-model.php');
         
         $userRetriever = new UserModel(); 
-        $userData = $userRetriever->getUser($_GET['id']);
+        $userData = $userRetriever->viewUser($_GET['id']);
         if ($userData !== null) {
     ?>
         <form action="../php/user-controller.php" method="POST">

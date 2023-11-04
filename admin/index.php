@@ -1,6 +1,5 @@
 <?php
-    require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/php/fetch-users.php';
-
+    require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/php/user-model.php';
 ?>
 
 <!DOCTYPE html>
@@ -48,28 +47,29 @@
 
         <tbody>
             <?php
-                $users = UserFactory::getDetails();
+                $userRetriever = new UserModel(); 
+                $users = $userRetriever->viewUsers();
 
                 // check if user data exists and handle accordingly
                 if (!empty($users)) {
                     foreach ($users as $user) {
                         ?>
                         <tr>
-                            <td><?php echo $user->getID(); ?></td>
+                            <td><?php echo $user['id']; ?></td>
                             <td>
                                 <?php
-                                    echo $user->getFirstName() . ' ' . $user->getLastName();
+                                    echo $user['first_name'] . ' ' . $user['last_name'];
                                 ?>
                             </td>
-                            <td><?php echo $user->getAge(); ?></td>
-                            <td><?php echo $user->getEmail(); ?></td>
-                            <td><?php echo $user->getTotalScore(); ?></td>
-                            <td><?php echo ucfirst(strtolower($user->getDepressionLevel())); ?></td>
+                            <td><?php echo $user['age']; ?></td>
+                            <td><?php echo $user['email']; ?></td>
+                            <td><?php echo $user['total_score']; ?></td>
+                            <td><?php echo ucfirst(strtolower($user['depression_level'])); ?></td>
                             <td>
-                                <a href="../php/user-controller.php?id=<?php echo $user->getID(); ?>&action=edit">
+                                <a href="../php/user-controller.php?id=<?php echo $user['id']; ?>&action=edit">
                                     Edit
                                 </a>
-                                <a href="../php/user-controller.php?id=<?php echo $user->getID(); ?>&action=delete">
+                                <a href="../php/user-controller.php?id=<?php echo $user['id']; ?>&action=delete">
                                     Delete
                                 </a>
                             </td>
