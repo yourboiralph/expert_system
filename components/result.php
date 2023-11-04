@@ -1,11 +1,13 @@
 <?php
-session_start();
-// Rest of your result.php code
-$firstName = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
-$lastname = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
-$totalScore = isset($_SESSION['totalScore']) ? $_SESSION['totalScore'] : '';
-$depressionLevel = isset($_SESSION['depressionLevel']);
+$userEncoded = $_GET['user'];
+$user = json_decode(base64_decode(urldecode($userEncoded)), true);
 
+$firstName = $user['firstName'];
+$lastName = $user['lastName'];
+$age = $user['age'];
+$email = $user['email'];
+$totalScore = $user['totalScore'];
+$depressionLevel = $user['depressionLevel'];
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +19,17 @@ $depressionLevel = isset($_SESSION['depressionLevel']);
     <title>Your Result</title>
 </head>
 <body>
+    <p>
+        <?php
+        if (isset($_GET['create-success'])) {
+            echo 'Successfully created!';
+        }
+        ?>
+    </p> 
     <div class="result-container">
         <h1>Your Depression Level</h1>
-        <p>Name: <?php echo $firstName . " " . $lastname; ?></p>
-        <p>Depression Level: <?php echo $totalScore . " " . $depressionLevel?></p>
+        <p>Name: <?php echo $firstName . " " . $lastName; ?></p>
+        <p>Depression Level: <?php echo $totalScore . " " . $depressionLevel; ?></p>
     </div>
 </body>
 </html>

@@ -66,10 +66,10 @@
                             <td><?php echo $user->getTotalScore(); ?></td>
                             <td><?php echo ucfirst(strtolower($user->getDepressionLevel())); ?></td>
                             <td>
-                                <a href="edit.php?id=<?php echo $user->getID(); ?>">
+                                <a href="../php/user-controller.php?id=<?php echo $user->getID(); ?>&action=edit">
                                     Edit
                                 </a>
-                                <a href="../php/delete.php?id=<?php echo $user->getID(); ?>">
+                                <a href="../php/user-controller.php?id=<?php echo $user->getID(); ?>&action=delete">
                                     Delete
                                 </a>
                             </td>

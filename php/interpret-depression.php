@@ -3,15 +3,15 @@ session_start();
 
 // base class
 abstract class User {
-    protected $firstname = '';
-    protected $lastname = '';
-    protected $age = '';
-    protected $email = '';
+    protected $firstname = 'anonymous';
+    protected $lastname = null;
+    protected $age = null;
+    protected $email = null;
     protected $totalScore;
     protected $depressionLevel;
 
     // setters 
-    public function __construct(string $firstname, string $lastname, string $email, string $age, int $number) {
+    public function __construct(string $firstname, string $lastname, string $email, int $age, int $number) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->email = $email;
@@ -84,7 +84,7 @@ class PrivateUser extends User {
 }
 
 class UserFactory {
-    public static function getDetails(string $type, string $firstname, string $lastname, string $email, string $age, int $number) {
+    public static function getDetails(string $type, string $firstname, string $lastname, string $email, int $age, int $number) {
         if ($type === "private") {
             return new PrivateUser($number);
         } elseif ($type === "public") {
