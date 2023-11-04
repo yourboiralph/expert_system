@@ -16,7 +16,7 @@ $depressionLevel = isset($_SESSION['depressionLevel']);
     <link rel="stylesheet" href="../dist/output.css">
     <title>Your Result</title>
 </head>
-<body>
+<body class="bg-image">
     <div class="result-container">
         <h1>Your Depression Level</h1>
         <p>Name: <?php echo $firstName . " " . $lastname; ?></p>

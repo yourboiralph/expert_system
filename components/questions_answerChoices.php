@@ -145,13 +145,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($currentQuestion < count($questions) - 1) {
                         echo '<button type="submit" name="next" class="text-white px-2  md:p-2 hover:text-yellow-300 duration-500">Next</button> ';
                     } else {
-                        echo '<input type="submit" name="submit" value="Submit Answers" class="bg-green-300 p-2  font-bold hover:text-white hover:bg-green-600 duration-500">';
+                        echo '<input type="submit" name="submit" value="Submit Answers" class="p-1 font-bold text-lg rounded-2xl text-green-300 hover:text-white hover:bg-green-400 duration-500">';
                     }
                     echo '<input type="submit" name="reset" value="Reset" class="p-2 font-bold text-black rounded-xl hover:bg-red-800 hover:text-white duration-500">';
                 ?>
             </div>
-            
         </form>
+
+        <div class="mt-5 p-2 w-auto shadow-2xl shadow-slate-800 text-sm text-center bg-black bg-opacity-50 rounded-2xl md:w-1/12 fade-in">
+            <a href="../components/visibility.php" class="text-white"><button>Go Back</button></a>
+        </div>
     </div>
 
     <?php 
