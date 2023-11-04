@@ -126,4 +126,4 @@ $stmt->execute();
 $stmt->close();
 $db->getConnection()->close();
 
-header("location: ../components/result.php");
+header("location: email-send.php");

@@ -1,11 +1,7 @@
 <?php
 session_start();
-$points = [
-    0 => 0,
-    1 => 1,
-    2 => 2, 
-    3 => 3
-];
+
+$points = [0, 1, 2, 3];
 
 $questions = [
     "How often do you feel sad?",
@@ -121,31 +117,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         include '../components/navbar.php';
     ?>
     <div class="w-full h-screen bg-image flex flex-col justify-center items-center">
-        <form class="p-5 w-auto shadow-2xl shadow-slate-800 text-xs md:w-7/12 md:text-3xl bg-white bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
-        <strong class="text-black font-light md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-[#99572C] text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
-
+        <form class="p-5 w-auto shadow-2xl shadow-slate-800 text-xs md:w-7/12 md:text-3xl bg-black bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
+        <strong class="text-[#ffdcc2] font-light md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-[#ffc599] text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
             <?php
                 foreach ($answerChoices[$currentQuestion] as $index => $choice) {
-                    $checked = isset($_SESSION['answers'][$currentQuestion]) && $_SESSION['answers'][$currentQuestion] == $index ? 'checked' : '';
+                    $checked = (isset($_SESSION['answers'][$currentQuestion]) && $_SESSION['answers'][$currentQuestion] === $index) ? 'checked' : '';
                     $radioId = 'radio_' . $currentQuestion . '_' . $index;
                     echo '<input type="radio" id="' . $radioId . '" name="question_' . $currentQuestion . '" value="' . $index . '" ' . $checked . '>';
-                    echo '<label for="' . $radioId . '" class="text-black text-xs md:text-lg">' . $choice . '</label><br>';
-                }
+                    echo '<label for="' . $radioId . '" class="text-white text-xs md:text-lg">' . $choice . '</label><br>';
+                }                
             ?>
 
-            <div class="flex justify-evenly mt-4 md:text-sm">
+            <div class="slider-controls">
                 <?php
-                    if ($currentQuestion > 0) {
-                        echo '<a href="?question=' . $previousQuestion . '" class="bg-white bg-opacity-50 text-white p-2 rounded-xl hover:bg-green-300 duration-500">Previous</a> ';
+                    for ($i = 0; $i < count($questions); $i++) {
+                        $sliderClass = $i === $currentQuestion ? 'selected' : '';
+                        echo '<a href="?question=' . $i . '" class="slider ' . $sliderClass . '"></a>';
                     }
-                    if ($currentQuestion < count($questions) - 1) {
-                        echo '<button type="submit" name="next" class="bg-white px-2 md:p-2 rounded-xl md:font-semibold hover:text-white hover:bg-green-300 duration-500">Next</button> ';
-                    } else {
-                        echo '<input type="submit" name="submit" value="Submit Answers" class="bg-green-300 p-2 rounded-xl font-bold hover:text-white hover:bg-green-600 duration-500">';
-                    }
-                    echo '<input type="submit" name="reset" value="Reset" class="hover:bg-red-800 hover:text-white duration-500 bg-white bg-opacity-50 font-bold text-red-800 shadow shadow-slate-950 p-2 rounded-xl">';
                 ?>
             </div>
+
+            <div class="flex justify-between mt-4 md:text-sm">
+                <?php
+                    if ($currentQuestion > 0) {
+                        echo '<a href="?question=' . $previousQuestion . '" class="text-white p-2  hover:text-yellow-300 duration-500">Previous</a> ';
+                    }
+                    if ($currentQuestion < count($questions) - 1) {
+                        echo '<button type="submit" name="next" class="text-white px-2  md:p-2 hover:text-yellow-300 duration-500">Next</button> ';
+                    } else {
+                        echo '<input type="submit" name="submit" value="Submit Answers" class="bg-green-300 p-2  font-bold hover:text-white hover:bg-green-600 duration-500">';
+                    }
+                    echo '<input type="submit" name="reset" value="Reset" class="p-2 font-bold text-black rounded-xl hover:bg-red-800 hover:text-white duration-500">';
+                ?>
+            </div>
+            
         </form>
     </div>
 
@@ -174,19 +179,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             opacity: 1;
             }
         }
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+        }
+
+        .slider {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px 5px 0 5px;
+            border: 1px solid #ffc599;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .slider.selected {
+            border-color: #000;
+            background-color: #ffc599;
+        }
     </style>
 
-    <script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const radioButtons = document.querySelectorAll('input[type="radio"]');
-        const answerText = document.querySelectorAll('.text-black.text-xs');
+        const answerText = document.querySelectorAll('.text-white.text-xs');
 
         function updateTextColor() {
         answerText.forEach((text, index) => {
             if (radioButtons[index].checked) {
-            text.classList.add('text-red-600');
+            text.classList.add('text-yellow-300');
             } else {
-            text.classList.remove('text-red-600');
+            text.classList.remove('text-yellow-300');
             }
         });
         }
@@ -197,6 +221,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         radio.addEventListener('change', function () {
             updateTextColor();
         });
+        });
+
+        // Add slide controls for answered/checked radio buttons
+        const slider = document.querySelectorAll('.button');
+
+        slider.forEach((button, index) => {
+            button.addEventListener('click', function () {
+                window.location.href = 'questions_answerChoices.php?question=' + index;
+            });
         });
     });
     </script>
