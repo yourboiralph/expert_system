@@ -12,14 +12,14 @@ class UserController {
         $userModel = new UserModel();
         $success = $userModel->deleteUser($id);
         $destination = $success ? 'success' : 'failed';
-        header("location: ../admin?delete-$destination=true");
+        header("location: ../admin?page=list&delete-$destination=true");
     }
 
     public function updateUser($id, $first_name, $last_name, $age, $email, $score, $depression_level) {
         $userModel = new UserModel();
         $success = $userModel->updateUser($id, $first_name, $last_name, $age, $email, $score, $depression_level);
         $destination = $success ? 'success' : 'failed';
-        header("location: ../admin?update-$destination=true");
+        header("location: ../admin?page=list&update-$destination=true");
     }
 
     public function createUser($type, $first_name, $last_name, $email, $age, $total_score) {
@@ -96,7 +96,7 @@ function handleCreate($controller) {
     $visibility = isset($_SESSION['visibility']) ? $_SESSION['visibility'] : '';
     $first_name = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
     $last_name = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
-    $age = isset($_SESSION['age']) ? $_SESSION['age'] : '';
+    $age = isset($_SESSION['age']) ? $_SESSION['age'] : 0;
     $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
     $total_score = isset($_SESSION['totalScore']) ? $_SESSION['totalScore'] : 0;
 
