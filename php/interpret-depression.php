@@ -96,25 +96,25 @@ class UserFactory {
 }
 
 // from the client
-$visibility = isset($_SESSION['visibility']) ? $_SESSION['visibility'] : '';
-$first_name = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
-$last_name = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
-$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
-$total_score = isset($_SESSION['totalScore']);
+// $visibility = isset($_SESSION['visibility']) ? $_SESSION['visibility'] : '';
+// $first_name = isset($_SESSION['firstname']) ? $_SESSION['firstname'] : '';
+// $last_name = isset($_SESSION['lastname']) ? $_SESSION['lastname'] : '';
+// $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+// $total_score = isset($_SESSION['totalScore']);
 
-$user = UserFactory::getDetails($visibility, $first_name, $last_name, $email, '123', [$_SESSION['totalScore']]);
+// $user = UserFactory::getDetails($visibility, $first_name, $last_name, $email, '123', [$_SESSION['totalScore']]);
 
 
-// get the Database singleton instance
-$db = Database::getInstance();
-$conn = $db->getConnection();
+// // get the Database singleton instance
+// $db = Database::getInstance();
+// $conn = $db->getConnection();
 
-// save to database
-$stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, total_score, depression_level) VALUES (?,?,?,?,?,?)");
-$stmt->bind_param("ssssss", $user->getFirstName(), $user->getLastName(), $user->getEmail(), $user->getPassword(), $user->getTotalScore(), $user->getDepressionLvl());
-$stmt->execute();
+// // save to database
+// $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, total_score, depression_level) VALUES (?,?,?,?,?,?)");
+// $stmt->bind_param("ssssss", $user->getFirstName(), $user->getLastName(), $user->getEmail(), $user->getPassword(), $user->getTotalScore(), $user->getDepressionLvl());
+// $stmt->execute();
 
-$stmt->close();
-$db->getConnection()->close();
+// $stmt->close();
+// $db->getConnection()->close();
 
-header("location: email-send.php");
+// header("location: email-send.php");

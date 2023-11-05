@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../dist/output.css">
     <title>Get Started</title>
 </head>
@@ -79,19 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
-    .fade-in {
-            opacity: 0;
-            animation: fadeIn 2s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-            opacity: 0;
-            }
-            to {
-            opacity: 1;
-            }
-        }
 </style>
 
 <script>
