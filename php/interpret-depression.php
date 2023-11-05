@@ -1,28 +1,23 @@
 <?php
 session_start();
-require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/config/database.php';
 
 // base class
 abstract class User {
+    protected $firstname = 'anonymous';
+    protected $lastname = null;
+    protected $age = null;
+    protected $email = null;
     protected $totalScore;
     protected $depressionLevel;
-    protected $firstname = '';
-    protected $lastname = '';
-    protected $email = '';
-    protected $pass_word = '';
 
     // setters 
-    public function __construct(string $firstname, string $lastname, string $email, string $pass_word, array $numbers) {
+    public function __construct(string $firstname, string $lastname, string $email, int $age, int $number) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->email = $email;
-        $this->pass_word = $pass_word;
+        $this->age = $age;
+        $this->totalScore = $number;
 
-        $this->totalScore = 0;
-
-        foreach ($numbers as $number) {
-            $this->totalScore += $number;
-        }
 
         // calculate depression level when the object is constructed
         $this->calculateDepressionLevel();
@@ -31,7 +26,7 @@ abstract class User {
     // identifies depression level
     protected function calculateDepressionLevel() {
         switch (true) {
-            case $this->totalScore >= 1 && $this->totalScore <= 10:
+            case $this->totalScore >= 0 && $this->totalScore <= 10:
                 $this->depressionLevel = 'NORMAL';
                 break;
             case $this->totalScore >= 11 && $this->totalScore <= 16:
@@ -63,11 +58,11 @@ abstract class User {
     public function getLastName() {
         return $this->lastname;
     }
+    public function getAge() {
+        return $this->age;
+    }
     public function getEmail() {
         return $this->email;
-    }
-    public function getPassword() {
-        return $this->pass_word;
     }
 }
 
@@ -78,12 +73,10 @@ class PublicUser extends User {
 //child class
 class PrivateUser extends User {
     
-    public function __construct (array $numbers) {
+    public function __construct (int $number) {
         $this->totalScore = 0;
+        $this->totalScore = $number;
 
-        foreach ($numbers as $number) {
-            $this->totalScore += $number;
-        }
 
         // calculate depression level when the object is constructed
         $this->calculateDepressionLevel();
@@ -91,18 +84,16 @@ class PrivateUser extends User {
 }
 
 class UserFactory {
-    public static function getDetails(string $type, string $firstname, string $lastname, string $email, string $pass_word, array $numbers) {
+    public static function getDetails(string $type, string $firstname, string $lastname, string $email, int $age, int $number) {
         if ($type === "private") {
-            return new PrivateUser($numbers);
+            return new PrivateUser($number);
         } elseif ($type === "public") {
-            return new PublicUser($firstname, $lastname, $email, $pass_word, $numbers);
+            return new PublicUser($firstname, $lastname, $email, $age, $number);
         } else {
             throw new Exception("Invalid user type or incorrect number of arguments for user type: $type");
         }
-        
     }
 }
-
 
 // from the client
 $visibility = isset($_SESSION['visibility']) ? $_SESSION['visibility'] : '';

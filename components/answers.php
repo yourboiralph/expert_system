@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-
-
 $questions = [
     "How often do you feel sad?",
     "How do you feel about the future?",

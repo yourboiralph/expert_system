@@ -11,14 +11,13 @@
     <h2>Edit User</h2>
 
     <?php
-        require ('../php/user.php');
+        require ('../php/user-model.php');
         
-        $userRetriever = new UserRetriever($_GET['id']);
-        $userData = $userRetriever->getUserData();
-
+        $userRetriever = new UserModel(); 
+        $userData = $userRetriever->viewUser($_GET['id']);
         if ($userData !== null) {
     ?>
-        <form action="../php/update-user.php" method="POST">
+        <form action="../php/user-controller.php" method="POST">
             <div>
                 <label>First Name</label><br />
                 <input type="text" name="first_name" placeholder="First Name" value="<?php echo $userData['first_name']; ?>"/>
@@ -48,6 +47,7 @@
                 <input type="radio" name="depression_level" value="SEVERE" <?php if ($userData['depression_level'] == 'SEVERE') echo 'checked'; ?>/> Severe
                 <input type="radio" name="depression_level" value="EXTREME" <?php if ($userData['depression_level'] == 'EXTREME') echo 'checked'; ?>/> Extreme
             </div>
+            <input type="hidden" name="action" value="update">
             <div>
                 <input type="hidden" name="id" value="<?php echo $userData['id']; ?>">
                 <button type="submit">Update</button>

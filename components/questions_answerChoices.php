@@ -152,9 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
 
-        <div class="mt-5 p-2 w-auto shadow-2xl shadow-slate-800 text-sm text-center bg-black bg-opacity-50 rounded-2xl md:w-1/12 fade-in">
-            <a href="../components/visibility.php" class="text-white"><button>Go Back</button></a>
-        </div>
+        <!-- <a href="../components/visibility.php" class="mt-5 p-2 w-auto shadow-2xl shadow-slate-800 text-sm text-center text-white bg-black bg-opacity-50 rounded-2xl md:w-1/12 fade-in">Go Back</a> -->
     </div>
 
     <?php 
@@ -207,33 +205,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.addEventListener('DOMContentLoaded', function () {
         const radioButtons = document.querySelectorAll('input[type="radio"]');
         const answerText = document.querySelectorAll('.text-white.text-xs');
+        const slider = document.querySelectorAll('.button');
 
         function updateTextColor() {
-        answerText.forEach((text, index) => {
-            if (radioButtons[index].checked) {
-            text.classList.add('text-yellow-300');
-            } else {
-            text.classList.remove('text-yellow-300');
-            }
-        });
+            answerText.forEach((text, index) => {
+                if (radioButtons[index].checked) {
+                    text.classList.add('text-yellow-300');
+                } else {
+                    text.classList.remove('text-yellow-300');
+                }
+            });
+        }
+
+        function addRadioChangeListeners() {
+            radioButtons.forEach((radio) => {
+                radio.addEventListener('change', updateTextColor);
+            });
+        }
+
+        function addSliderClickListeners() {
+            slider.forEach((button, index) => {
+                button.addEventListener('click', function () {
+                    redirectToQuestion(index);
+                });
+            });
+        }
+
+        function redirectToQuestion(index) {
+            window.location.href = 'questions_answerChoices.php?question=' + index;
         }
 
         updateTextColor();
-
-        radioButtons.forEach((radio, index) => {
-        radio.addEventListener('change', function () {
-            updateTextColor();
-        });
-        });
-
-        // Add slide controls for answered/checked radio buttons
-        const slider = document.querySelectorAll('.button');
-
-        slider.forEach((button, index) => {
-            button.addEventListener('click', function () {
-                window.location.href = 'questions_answerChoices.php?question=' + index;
-            });
-        });
+        addRadioChangeListeners();
+        addSliderClickListeners();
     });
     </script>
 </body>

@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" id="age" name="age" value="0" class="w-32 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent" oninput="validateAge(this)"><br>
         </div>
         <div class="mt-4 flex justify-between space-x-5">
-            <a href="../index.php" class="p-2 rounded-lg text-slate-400 hover:bg-opacity-40 hover:bg-slate-400 hover:scale-110 duration-500"><button>Go Back</button></a>
+        <a href="../index.php" class="p-2 rounded-lg text-slate-400 hover:bg-opacity-40 hover:bg-slate-400 hover:scale-110 duration-500">Go Back</a>
             <input type="submit" name="visibility" value="Submit" class="p-2 rounded-lg cursor-pointer text-white font-bold hover:bg-opacity-40 hover:bg-yellow-500 hover:scale-110 duration-500">
             <input type="submit" name="visibility" value="Skip" class="p-2 rounded-lg cursor-pointer text-slate-400 hover:bg-opacity-40 hover:bg-slate-400 hover:scale-110 duration-500">
         </div>
