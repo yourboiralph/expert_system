@@ -168,6 +168,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+        }
+
+        .slider {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px 5px 0 5px;
+            border: 1px solid #ffc599;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .slider.selected {
+            border-color: #000;
+            background-color: #ffc599;
+        }
     </style>
 
 <script>

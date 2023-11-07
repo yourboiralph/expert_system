@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $userEncoded = $_GET['user'];
 $user = json_decode(base64_decode(urldecode($userEncoded)), true);
 
@@ -10,21 +8,6 @@ $age = $user['age'];
 $email = $user['email'];
 $totalScore = $user['totalScore'];
 $depressionLevel = $user['depressionLevel'];
-
-if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
-        if (empty($email)) {
-            echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
-                <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Please fill in all the required fields (First name, Last name, Email Address, Age) before submitting.</h3>
-            </div>';
-        } else {
-            $_SESSION['email'] = $email;
-            header("Location: ../php/email-send.php");
-            exit();
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +19,13 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
     <title>Your Result</title>
 </head>
 <body>
+    <p>
+        <?php
+        if (isset($_GET['create-success'])) {
+            echo 'Successfully created!';
+        }
+        ?>
+    </p>
     <div class="result-container">
         <h1>Your Depression Level</h1>
         <p>Name: <?php echo $firstName . " " . $lastName; ?></p>
