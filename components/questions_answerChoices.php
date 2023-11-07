@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $_SESSION['totalPoints'] = isset($_SESSION['totalPoints']) ? $_SESSION['totalPoints'] : 0;
             $_SESSION['totalScore'] = $_SESSION['totalPoints'];
-            header('Location: ../php/interpret-depression.php');
+            header('Location: ../php/user-controller.php?action=create');
             exit();
         }
     } elseif (isset($_POST['reset'])) {
@@ -168,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
+
         .slider-controls {
             display: flex;
             justify-content: center;
