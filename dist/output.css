@@ -667,12 +667,24 @@ video {
   left: 2.5rem;
 }
 
+.left-4 {
+  left: 1rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
 .right-7 {
   right: 1.75rem;
 }
 
 .start-1 {
   inset-inline-start: 0.25rem;
+}
+
+.top-1\/2 {
+  top: 50%;
 }
 
 .top-28 {
@@ -689,26 +701,6 @@ video {
 
 .top-\[80px\] {
   top: 80px;
-}
-
-.left-0 {
-  left: 0px;
-}
-
-.top-0 {
-  top: 0px;
-}
-
-.left-4 {
-  left: 1rem;
-}
-
-.right-4 {
-  right: 1rem;
-}
-
-.top-1\/2 {
-  top: 50%;
 }
 
 .isolate {
@@ -847,6 +839,10 @@ video {
   margin-top: 20rem;
 }
 
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -976,14 +972,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-auto {
-  height: auto;
-}
-
-.h-full {
-  height: 100%;
 }
 
 .min-h-screen {
@@ -2365,6 +2353,10 @@ video {
   font-weight: 100;
 }
 
+.font-light {
+  font-weight: 300;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -2532,6 +2524,21 @@ video {
 .text-yellow-500 {
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity));
+}
+
+.text-\[\#ffc599\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 197 153 / var(--tw-text-opacity));
+}
+
+.text-\[\#ffdcc2\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 220 194 / var(--tw-text-opacity));
+}
+
+.text-green-300 {
+  --tw-text-opacity: 1;
+  color: rgb(134 239 172 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -3020,6 +3027,11 @@ video {
   background-color: rgb(161 98 7 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-green-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-opacity-40:hover {
   --tw-bg-opacity: 0.4;
 }
@@ -3046,6 +3058,16 @@ video {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-yellow-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(253 224 71 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#99562C\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(153 86 44 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -3172,6 +3194,10 @@ video {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-1\/12 {
+    width: 8.333333%;
   }
 
   .md\:transform {

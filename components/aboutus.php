@@ -25,7 +25,7 @@
     <div class="mt-80 flex items-center justify-center h-screen md:mt-0">
         <div class="container p-4 mx-4">
             <h1 class="text-3xl font-semibold mb-6 text-white">Meet Our Team</h1>
-            <div class="grid gap-4 justify-center md:flex">
+            <div class="text-white grid gap-4 justify-center md:flex">
                 <?php
                 $teamMembers = [
                     ['Ralph', 'Team Leader, Developer & Database Analyst', '../img/Ralph.png'],
@@ -37,10 +37,10 @@
                 foreach ($teamMembers as $member) {
                     list($name, $position, $image) = $member;
                 ?>
-                <div class="bg-white bg-opacity-50 p-4 rounded-lg shadow-lg fade-in w-80">
+                <div class="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg fade-in w-80">
                     <img src="<?= $image ?>" alt="<?= $name ?>" class="w-32 h-32 rounded-full mx-auto mb-4">
                     <h2 class="text-xl font-semibold"><?= $name ?></h2>
-                    <p class="text-black"><?= $position ?></p>
+                    <p><?= $position ?></p>
                     <ion-icon name="logo-facebook"></ion-icon>
                     <ion-icon name="logo-github"></ion-icon>
                     <ion-icon name="logo-instagram"></ion-icon>

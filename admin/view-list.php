@@ -2,7 +2,7 @@
     require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/php/user-model.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html class="scrollbar-hide">
 <body class="bg-gray-900 text-white">
     <div class="w-full">
         <h1 class="text-2xl font-semibold text-yellow-400 mb-4">Users</h1>

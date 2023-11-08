@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html class="scrollbar-hide">
 <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 </head>

@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['next'])) {
         if ($_SESSION['answers'][$currentQuestion] === null) {
-            echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
+            echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform" id="error_msg">
                     <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Please select an option before proceeding.</h3>
                 </div>';
         } else {
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         if ($unanswered) {
-            echo '<div class="absolute inset-x-[38%] inset-y-24 transform">
+            echo '<div class="absolute inset-x-[38%] inset-y-24 transform" id="error_msg">
                     <h3 style="color:red" class="bg-white rounded-full text-center font-medium p-2 z-50">Please make sure to answer all the questions!</h3>
                 </div>';
         } else {
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scrollbar-hide">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -122,79 +122,119 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>
     <div class="w-full h-screen bg-image flex flex-col justify-center items-center">
         <form class="p-5 w-auto shadow-2xl shadow-slate-800 text-xs md:w-7/12 md:text-3xl bg-black bg-opacity-50 rounded-2xl fade-in" method="post" action="questions_answerChoices.php?question=<?php echo $currentQuestion; ?>">
-        <strong class="text-slate-400 font-thin md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-yellow-500 text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
-
+        <strong class="text-[#ffdcc2] font-light md:font-normal text-xs md:text-lg">Question <?php echo $currentQuestion + 1 ?> :</strong> <span class="text-[#ffc599] text-sm font-bold md:text-3xl"><?php echo $questions[$currentQuestion]; ?></span><br>
             <?php
                 foreach ($answerChoices[$currentQuestion] as $index => $choice) {
-                    $checked = isset($_SESSION['answers'][$currentQuestion]) && $_SESSION['answers'][$currentQuestion] == $index ? 'checked' : '';
+                    $checked = (isset($_SESSION['answers'][$currentQuestion]) && $_SESSION['answers'][$currentQuestion] === $index) ? 'checked' : '';
                     $radioId = 'radio_' . $currentQuestion . '_' . $index;
                     echo '<input type="radio" id="' . $radioId . '" name="question_' . $currentQuestion . '" value="' . $index . '" ' . $checked . '>';
                     echo '<label for="' . $radioId . '" class="text-white text-xs md:text-lg">' . $choice . '</label><br>';
-                }
+                }                
             ?>
 
-            <div class="flex justify-evenly mt-4 md:text-sm">
+            <div class="slider-controls">
+                <?php
+                    for ($i = 0; $i < count($questions); $i++) {
+                        $sliderClass = $i === $currentQuestion ? 'selected' : '';
+                        echo '<a href="?question=' . $i . '" class="slider ' . $sliderClass . '"></a>';
+                    }
+                ?>
+            </div>
+
+            <div class="flex justify-between mt-4 md:text-sm">
                 <?php
                     if ($currentQuestion > 0) {
-                        echo '<a href="?question=' . $previousQuestion . '" class="bg-white bg-opacity-50 text-white p-2 rounded-xl hover:bg-green-300 duration-500">Previous</a> ';
+                        echo '<a href="?question=' . $previousQuestion . '" class="text-white p-2  hover:text-yellow-300 duration-500">Previous</a> ';
                     }
                     if ($currentQuestion < count($questions) - 1) {
-                        echo '<button type="submit" name="next" class="bg-white px-2 md:p-2 rounded-xl md:font-semibold hover:text-white hover:bg-green-300 duration-500">Next</button> ';
+                        echo '<button type="submit" name="next" class="text-white px-2  md:p-2 hover:text-yellow-300 duration-500">Next</button> ';
                     } else {
-                        echo '<input type="submit" name="submit" value="Submit Answers" class="bg-green-300 p-2 rounded-xl font-bold hover:text-white hover:bg-green-600 duration-500">';
+                        echo '<input type="submit" name="submit" value="Submit Answers" class="p-1 font-bold text-lg rounded-2xl text-green-300 hover:text-white hover:bg-green-400 duration-500">';
                     }
-                    echo '<input type="submit" name="reset" value="Reset" class="hover:bg-red-800 hover:text-white duration-500 bg-white bg-opacity-50 font-bold text-red-800 shadow shadow-slate-950 p-2 rounded-xl">';
+                    echo '<input type="submit" name="reset" value="Reset" class="p-2 font-bold text-black rounded-xl hover:bg-red-800 hover:text-white duration-500">';
                 ?>
             </div>
         </form>
+
+        <!-- <a href="../components/visibility.php" class="mt-5 p-2 w-auto shadow-2xl shadow-slate-800 text-sm text-center text-white bg-black bg-opacity-50 rounded-2xl md:w-1/12 fade-in">Go Back</a> -->
     </div>
+
+    <?php 
+        include '../components/footer.php';    
+    ?>
 
     <style>
         .bg-image {
-            background-image: url('../img/sunflower.jpg');
+            background-image: url('../img/paper1.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 2s ease forwards;
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
         }
 
-        @keyframes fadeIn {
-            from {
-            opacity: 0;
-            }
-            to {
-            opacity: 1;
-            }
+        .slider {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px 5px 0 5px;
+            border: 1px solid #ffc599;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .slider.selected {
+            border-color: #000;
+            background-color: #ffc599;
         }
     </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const radioButtons = document.querySelectorAll('input[type="radio"]');
-    const answerText = document.querySelectorAll('.text-white.text-xs');
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        const answerText = document.querySelectorAll('.text-white.text-xs');
+        const slider = document.querySelectorAll('.button');
 
-    function updateTextColor() {
-      answerText.forEach((text, index) => {
-        if (radioButtons[index].checked) {
-          text.classList.add('text-yellow-500');
-        } else {
-          text.classList.remove('text-yellow-500');
+        function updateTextColor() {
+            answerText.forEach((text, index) => {
+                if (radioButtons[index].checked) {
+                    text.classList.add('text-yellow-300');
+                } else {
+                    text.classList.remove('text-yellow-300');
+                }
+            });
         }
-      });
-    }
 
-    updateTextColor();
+        function addRadioChangeListeners() {
+            radioButtons.forEach((radio) => {
+                radio.addEventListener('change', updateTextColor);
+            });
+        }
 
-    radioButtons.forEach((radio, index) => {
-      radio.addEventListener('change', function () {
+        function addSliderClickListeners() {
+            slider.forEach((button, index) => {
+                button.addEventListener('click', function () {
+                    redirectToQuestion(index);
+                });
+            });
+        }
+
+        function redirectToQuestion(index) {
+            window.location.href = 'questions_answerChoices.php?question=' + index;
+        }
+
         updateTextColor();
-      });
+        addRadioChangeListeners();
+        addSliderClickListeners();
     });
-  });
-</script>
+
+    setTimeout(() => {
+        error_msg.classList.add('hidden');
+    }, 2500);
+    </script>
 </body>
 </html>

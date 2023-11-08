@@ -18,7 +18,7 @@
             </div>
             <div class="md:items-start">
                 <p class="md:text-lg font-semibold md:ml-24 md:mb-5 text-[#99562C]">Begin Your Journey to Understanding <br>Your Mental Health.</p>
-                <a href="./components/visibility.php" class="button font-semibold text-white bg-yellow-950 shadow-2xl shadow-black px-2 rounded-xl hover:text-[#faf761] md:ml-24 md:text-3xl">Get Started</a>
+                <a href="./components/visibility.php" class="button font-bold text-black hover:text-[#99562C] md:ml-24 md:text-3xl">Get Started</a>
             </div>
         </div>
     </div>
