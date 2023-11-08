@@ -10,9 +10,7 @@
 </head>
 <body>
     <?php
-        $isIncludedInAboutUs = (basename($_SERVER['PHP_SELF']) === 'aboutus.php');
-        // $textColorClass = $isIncludedInAboutUs ? 'text-slate-600' : 'text-white';
-        // echo $textColorClass;
+        $isIncludedInAboutUs = (basename($_SERVER['PHP_SELF']) === 'aboutus.php' || basename($_SERVER['PHP_SELF']) === 'result.php');
     ?>
     <nav class="p-2 shadow-md fixed w-full <?php echo $isIncludedInAboutUs ? 'bg-white bg-opacity-70' : ''; ?> md:p-5 md:py-0 md:flex md:items-center md:justify-between">
         <div class="flex justify-between items-center ml-10">
@@ -29,6 +27,10 @@
             <!-- <button class="shadow-[#B8764B] p-2 rounded-2xl hover:scale-125 duration-300 text-[#B8764B] hover:text-[#DAC5B7]"><a href="/Appdev/components/login.php">Login</a></button> -->
         </ul>
     </nav>
+
+    <?php 
+        include './footer.php';    
+    ?>
 
     <style>
         .button {
