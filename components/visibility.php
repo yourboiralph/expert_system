@@ -10,35 +10,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("location: questions_answerChoices.php");
             exit();
         } elseif ($visibility == 'Submit') {
-            if(isset($_POST['email'])){
-                $_SESSION['visibility'] = 'public';
-                $_SESSION['email'] = $_POST['email'];
-                $_SESSION['age'] = $_POST['age'];  
-                $_SESSION['firstname'] = $_POST['firstname']; 
-                $_SESSION['lastname'] = $_POST['lastname'];
-                header("location: questions_answerChoices.php");
-                exit(); 
-            } elseif (empty($firstname) || empty($lastname) || empty($age) || empty($email)) {
-                echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $age = $_POST['age'];
+            $email = $_POST['email'];
+
+            if (empty($firstname) || empty($lastname) || empty($age) || empty($email)) {
+                echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform" id="error_msg">
                     <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Please fill in all the required fields (First name, Last name, Email Address, Age) before submitting.</h3>
                 </div>';
             } elseif ($age < 10) {
-                echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
+                echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform" id="error_msg">
                     <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Age must be 10 or greater.</h3>
                 </div>';
-            } elseif ($age <= 90) {
-                $_SESSION['visibility'] = 'public';
-                header("location: questions_answerChoices.php");
-                exit();
-            } else {
-                echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
+            } elseif ($age > 90) {
+                echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform" id="error_msg">
                     <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Age must be 90 or less.</h3>
                 </div>';
+            } else {
+                $_SESSION['visibility'] = 'public';
+                $_SESSION['email'] = $email;
+                $_SESSION['age'] = $age;
+                $_SESSION['firstname'] = $firstname;
+                $_SESSION['lastname'] = $lastname;
+                header("location: questions_answerChoices.php");
+                exit();
             }
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -93,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </style>
 
 <script>
+    const error_msg = document.getElementById('error_msg');
     function validateInput(inputField) {
         if (inputField.value.trim() !== "") {
             inputField.style.borderColor = "green";
@@ -109,6 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ageField.style.borderColor = "green";
         }
     }
+    setTimeout(() => {
+        error_msg.classList.add('hidden');
+    }, 1500);
 </script>
 </body>
 </html>
