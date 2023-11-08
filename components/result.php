@@ -34,13 +34,16 @@ $depressionLevel = $user['depressionLevel'];
         <div class="flex justify-center">
             <div class="mt-64 w-3/6 h-60 bg-black bg-opacity-70 flex justify-center rounded-xl">
                 <div class="p-4 w-full text-white text-xs md:text-3xl">
-                    <h1 class="flex justify-center text-[#ffdcc2] font-bold">Your Depression Level</h1>
+                    <h1 class="flex justify-center text-[#ffc599] font-bold">Your Depression Level</h1>
                     <p>Name: <?php echo $firstName . " " . $lastName; ?></p>
-                    <p>Depression Level: <?php echo $totalScore . " " . $depressionLevel; ?></p>
+                    <p>Score: <?php echo $totalScore; ?></p>
+                    <p>Depression Level: <?php echo $depressionLevel; ?></p>
                 </div>
             </div>
         </div>
     </div>
+
+    
 
     <?php 
         include '../components/footer.php';

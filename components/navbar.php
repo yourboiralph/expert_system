@@ -28,10 +28,6 @@
         </ul>
     </nav>
 
-    <?php 
-        include './footer.php';    
-    ?>
-
     <style>
         .button {
             position: relative;
