@@ -50,12 +50,17 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
             }
         ?>
         <div class="flex justify-center">
-            <div class="mt-64 w-3/6 h-60 bg-white bg-opacity-20 flex justify-center rounded-xl">
-            <div class="p-4 w-full text-white text-xs md:px-10 md:space-y-5 md:text-3xl flex flex-col items-center"> <!-- Center the content -->
-                    <h1 class="flex justify-center text-[#ffc599] font-bold">Your Depression Level</h1>
-                    <p>Name: <?php echo $firstName . " " . $lastName; ?></p>
-                    <p>Score: <?php echo $totalScore; ?></p>
-                    <p>Depression Level: <?php echo $depressionLevel; ?></p>
+            <div class="mt-44 w-11/12 h-60 flex justify-center rounded-xl md:mt-64 md:w-3/6 md:h-60">
+                <div class="p-4 w-full text-white md:px-10 md:space-y-5 flex flex-col items-center">
+                    <h1 class="text-center text-base text-[#ffc599] font-bold md:text-3xl">Your Depression Level</h1>
+                    <div class="w-11/12 h-5/6 p-4 pb-10 text-xs bg-white bg-opacity-20 rounded-xl grid grid-cols-2 md:text-xl md:w-11/12 md:h-5/6">
+                        <p>Name: </p>
+                        <div class="text-center text-base md:text-3xl md:text-start"><?php echo $firstName . " " . $lastName; ?></div>
+                        <p>Score: </p>
+                        <div class="text-center text-base md:text-3xl md:text-start"><?php echo $totalScore; ?></div>
+                        <p>Depression Level: </p>
+                        <div class="text-center text-base md:text-3xl md:text-start"><?php echo $depressionLevel; ?></div>
+                    </div>
                     <?php if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') { ?>
                         <form action="" method="POST">
                         <label for="email">Email</label><br>
@@ -69,10 +74,18 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
                 </div>
             </div>
         </div>
+
+        <div class="mx-5 my-10 text-white">
+            <h1>Did You Know</h1>
+            <div>
+                <h2>Children (10-14 years):</h2>
+                <p>Depression is estimated to affect around 1.1% of children aged 10-14. While it is rare, it's not unheard of for children in this age group to experience depression.</p>
+            </div>
+        </div>
     </div>
 
     <div class="flex justify-center mb-10">
-        <div class="bg-black bg-opacity-30 rounded-xl flex justify-center md:w-7/12 md:h-11/12">
+        <div class="p-5 bg-white bg-opacity-30 rounded-xl flex justify-center md:w-7/12 md:h-11/12">
             <canvas id="ageChart" width="300" height="150"></canvas>
         </div>
     </div>
@@ -131,9 +144,9 @@ var ageChart = new Chart(ctx, {
             label: 'Prevalence of Depression (%)',
             data: Object.values(ageData),
             backgroundColor: 'rgba(153, 87, 44, 1)',
-            borderColor: 'rgba(0, 0, 0, 1))',
-            borderWidth: 1,
-            borderRadius: 10
+            borderColor: 'rgba(255, 255, 255, 1)',
+            borderWidth: 3,
+            borderRadius: 5
         }]
     },
     options: {
@@ -141,12 +154,12 @@ var ageChart = new Chart(ctx, {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    color: 'white' // Set text color for y-axis labels
+                    color: 'white'
                 }
             },
             x: {
                 ticks: {
-                    color: 'white' // Set text color for x-axis labels
+                    color: 'white'
                 }
             }
         },

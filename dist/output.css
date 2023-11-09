@@ -703,6 +703,10 @@ video {
   top: 80px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -773,6 +777,11 @@ video {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .mb-10 {
@@ -849,6 +858,18 @@ video {
 
 .mt-80 {
   margin-top: 20rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mt-52 {
+  margin-top: 13rem;
+}
+
+.mt-44 {
+  margin-top: 11rem;
 }
 
 .box-border {
@@ -986,6 +1007,10 @@ video {
   height: 100vh;
 }
 
+.h-5\/6 {
+  height: 83.333333%;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1034,8 +1059,16 @@ video {
   width: 100%;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .min-w-full {
   min-width: 100%;
+}
+
+.flex-none {
+  flex: none;
 }
 
 .flex-shrink {
@@ -2275,6 +2308,10 @@ video {
   padding-bottom: 1rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2361,9 +2398,9 @@ video {
   line-height: 1rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .font-bold {
@@ -2968,6 +3005,10 @@ video {
   a-z-a--z0-9: \\-\\. $;
 }
 
+.\[hostname\:port\] {
+  hostname: port;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -3164,6 +3205,14 @@ video {
     margin-top: 0px;
   }
 
+  .md\:mt-52 {
+    margin-top: 13rem;
+  }
+
+  .md\:mt-64 {
+    margin-top: 16rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -3188,8 +3237,24 @@ video {
     height: 15%;
   }
 
+  .md\:h-1\/5 {
+    height: 20%;
+  }
+
+  .md\:h-5\/6 {
+    height: 83.333333%;
+  }
+
+  .md\:h-60 {
+    height: 15rem;
+  }
+
   .md\:w-1\/12 {
     width: 8.333333%;
+  }
+
+  .md\:w-6\/12 {
+    width: 50%;
   }
 
   .md\:w-7\/12 {
@@ -3202,6 +3267,18 @@ video {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-10\/12 {
+    width: 83.333333%;
+  }
+
+  .md\:w-11\/12 {
+    width: 91.666667%;
+  }
+
+  .md\:w-3\/6 {
+    width: 50%;
   }
 
   .md\:transform {
@@ -3251,6 +3328,10 @@ video {
     padding: 1.25rem;
   }
 
+  .md\:p-4 {
+    padding: 1rem;
+  }
+
   .md\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -3263,6 +3344,10 @@ video {
 
   .md\:pb-10 {
     padding-bottom: 2.5rem;
+  }
+
+  .md\:text-start {
+    text-align: start;
   }
 
   .md\:text-3xl {
@@ -3288,6 +3373,11 @@ video {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .md\:font-medium {
