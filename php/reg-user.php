@@ -1,10 +1,6 @@
 <?php
 
-require $_SERVER["DOCUMENT_ROOT"] . '/project2/config/database.php';
-
-// Get the Database singleton instance
-$db = Database::getInstance();
-$conn = $db->getConnection();
+require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/config/database.php';
 
 $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)");
 $stmt->bind_param("ssss", $firstname, $lastname, $email, $pass_word);
@@ -16,6 +12,6 @@ $pass_word = password_hash($_POST["pass_word"], PASSWORD_DEFAULT);
 $stmt->execute();
 
 $stmt->close();
-$db->getConnection()->close();
+$conn->close();
 
 header("location: ../index.php?save-success=true");

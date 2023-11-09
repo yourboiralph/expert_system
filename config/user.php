@@ -1,6 +1,6 @@
 <?php
 
-require $_SERVER["DOCUMENT_ROOT"] . '/project/config/database.php';
+require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/config/database.php';
 
 $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, gender, diagnosis) VALUES (?,?,?,?)");
 $stmt->bind_param("ssss", $firstname, $lastname, $gender, $diagnosis);
