@@ -37,7 +37,7 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
     <title>Your Result</title>
 </head>
 <body class="bg-image">
-    <?php 
+    <?php
         include '../components/navbar.php';
     ?>
 
