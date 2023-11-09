@@ -12,7 +12,7 @@
     <?php
         $isIncludedInAboutUs = (basename($_SERVER['PHP_SELF']) === 'aboutus.php' || basename($_SERVER['PHP_SELF']) === 'result.php');
     ?>
-    <nav class="p-2 shadow-md fixed w-full <?php echo $isIncludedInAboutUs ? 'bg-white bg-opacity-70' : ''; ?> md:p-5 md:py-0 md:flex md:items-center md:justify-between">
+    <nav class="p-2 shadow-md fixed w-full <?php echo $isIncludedInAboutUs ? 'bg-[#ffc599] bg-opacity-70' : ''; ?> md:p-5 md:py-0 md:flex md:items-center md:justify-between">
         <div class="flex justify-between items-center ml-10">
             <a href="/Appdev/index.php"><img src="/Appdev/img/untangled1.png" alt="Untangled" class="w-[30%] h-[30%] md:w-[30%] md:h-[15%]"></a>
             
