@@ -17,7 +17,12 @@
                 <h2 class="font-bold text-2xl text-[#1F0805]">Login</h2>
                 <p class="text-sm mt-4 text-[#1F0805]">If you're already a member, easily log in</p>
 
-                <form class="flex flex-col gap-4"  action="../php/login-user.php" method="post">
+                <form class="flex flex-col gap-4"  action="../php/login-user.php" method="post" novalidate>
+                    <?php
+                        if(isset($_GET['login']) == 'false'){
+                            echo '<h1 id="validator" class="text-red-600">Incorrect user or password</h1>';
+                        }
+                    ?>
                     <input class="p-2 mt-8 rounded-2xl border" type="email" name="email" placeholder="Email">
                     <div class="relative ">
                         <input class="p-2 rounded-2xl border w-full" type="password" name="pass_word" placeholder="Password">
@@ -76,5 +81,13 @@
         }
         
     </style>
+    <script>
+        const validator = document.getElementById('validator');
+
+        // Set a timeout to change the color
+        setTimeout(() => {
+        validator.classList.add('hidden');
+        }, 1500);
+    </script>
 </body>
 </html>

@@ -1,5 +1,11 @@
+<?php
+    session_start();
+    if($_GET['login'] == false){
+        header("location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
-<html class="scrollbar-hide">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +18,8 @@
         <div class="container mx-auto flex justify-between items-center">
             <a href="index.php"><h1 class="text-2xl font-semibold text-yellow-400">Dashboard</h1></a>
             <nav class="space-x-4">
-                <a href="?page=list" class="hover:underline">Users</a>
-                <a href="?page=graph" class="hover:underline">Graphs</a>
+                <a href="?login=true&page=list" class="hover:underline">Users</a>
+                <a href="?login=ture&page=graph" class="hover:underline">Graphs</a>
                 <a href="../" class="hover:underline">Sign Out</a>
             </nav>
         </div>
@@ -26,11 +32,19 @@
             $page = $_GET['page'];
             switch ($page) {
                 case 'list':
+                    if (!isset($_GET['page_number'])) {  
+                        $page_number = 1;  
+                    } else {  
+                        $page_number = $_GET['page_number'];  
+                    }  
+                
                     include('view-list.php'); 
                     break;
+
                 case 'graph':
                     include('graph.php'); 
                     break;
+
                 default:
                     include('view-list.php'); 
                     break;

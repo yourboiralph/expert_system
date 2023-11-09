@@ -1,8 +1,9 @@
 <?php
-
 require $_SERVER["DOCUMENT_ROOT"] . '/Appdev/config/database.php';
+$db = Database::getInstance();
+$conn = $db->getConnection();
 
-$stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)");
+$stmt = $conn->prepare("INSERT INTO user_admin (first_name, last_name, email, password) VALUES (?,?,?,?)");
 $stmt->bind_param("ssss", $firstname, $lastname, $email, $pass_word);
 
 $firstname = $_POST["first_name"];
@@ -14,4 +15,4 @@ $stmt->execute();
 $stmt->close();
 $conn->close();
 
-header("location: ../index.php?save-success=true");
+header("location: ../admin");
