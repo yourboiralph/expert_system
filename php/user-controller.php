@@ -42,7 +42,7 @@ class UserController {
         $userDataEncoded = base64_encode(json_encode($userData));
 
         $destination = $success ? 'success' : 'failed';
-        header("location: ../components/result.php?create-$destination=true&user=$userDataEncoded");
+        header("location: ../components/result.php?create-$destination=true&user=$userDataEncoded&visibility=" . $_SESSION['visibility'] );
     }
 }
 

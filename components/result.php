@@ -60,6 +60,8 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
                         <div class="text-center text-base md:text-3xl md:text-start"><?php echo $totalScore; ?></div>
                         <p>Depression Level: </p>
                         <div class="text-center text-base md:text-3xl md:text-start"><?php echo $depressionLevel; ?></div>
+
+                        <button id="openModal">Send Email</button>
                     </div>
                     <?php if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') { ?>
                         <form action="" method="POST">
@@ -79,13 +81,13 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
             <h1>Did You Know</h1>
             <div>
                 <h2>Children (10-14 years):</h2>
-                <p>Depression is estimated to affect around 1.1% of children aged 10-14. While it is rare, it's not unheard of for children in this age group to experience depression.</p>
+                <p class="line-clamp-2 md:line-clamp-none">Depression is estimated to affect around 1.1% of children aged 10-14. While it is rare, it's not unheard of for children in this age group to experience depression.</p>
             </div>
         </div>
     </div>
 
     <div class="flex justify-center mb-10">
-        <div class="p-5 bg-white bg-opacity-30 rounded-xl flex justify-center md:w-7/12 md:h-11/12">
+        <div class="p-5 bg-white bg-opacity-30 rounded-xl flex justify-center md:p-0 md:w-7/12 md:h-11/12">
             <canvas id="ageChart" width="300" height="150"></canvas>
         </div>
     </div>
@@ -122,56 +124,56 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
     </style>
 
     <script>
-        // Your age statistics data
-var ageData = {
-    "Children (10-14 years)": 1.1,
-    "Adolescents (15-19 years)": 2.8,
-    "Early Adulthood (20-29 years)": 8,  // Taking an average of 6-10%
-    "Adulthood (30-64 years)": 8,        // Taking an average of 6-10%
-    "Older Adults (65-74 years)": 3,      // Taking an average of 1-5%
-    "Elderly (75-90 years)": 3            // Taking an average of 1-5%
-};
+    // Your age statistics data
+    var ageData = {
+        "Children (10-14 years)": 1.1,
+        "Adolescents (15-19 years)": 2.8,
+        "Early Adulthood (20-29 years)": 8,  // Taking an average of 6-10%
+        "Adulthood (30-64 years)": 8,        // Taking an average of 6-10%
+        "Older Adults (65-74 years)": 3,      // Taking an average of 1-5%
+        "Elderly (75-90 years)": 3            // Taking an average of 1-5%
+    };
 
-// Get the canvas element
-var ctx = document.getElementById('ageChart').getContext('2d');
+    // Get the canvas element
+    var ctx = document.getElementById('ageChart').getContext('2d');
 
-// Create a bar graph
-var ageChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: Object.keys(ageData),
-        datasets: [{
-            label: 'Prevalence of Depression (%)',
-            data: Object.values(ageData),
-            backgroundColor: 'rgba(153, 87, 44, 1)',
-            borderColor: 'rgba(255, 255, 255, 1)',
-            borderWidth: 3,
-            borderRadius: 5
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'white'
+    // Create a bar graph
+    var ageChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(ageData),
+            datasets: [{
+                label: 'Prevalence of Depression (%)',
+                data: Object.values(ageData),
+                backgroundColor: 'rgba(153, 87, 44, 1)',
+                borderColor: 'rgba(255, 255, 255, 1)',
+                borderWidth: 3,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'white'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'white'
+                    }
                 }
             },
-            x: {
-                ticks: {
-                    color: 'white'
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'white' // Set text color for legend labels
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
                 }
             }
         }
-    }
-});
+    });
     setTimeout(() => {
         error_msg.classList.add('hidden');
     }, 2500);
