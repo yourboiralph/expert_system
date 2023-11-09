@@ -16,7 +16,7 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
         $email = $_POST['email'];
         if (empty($email)) {
             echo '<div class="absolute top-28 inset-x-[20%] md:inset-x-[38%] md:inset-y-[100%] md:top-24 md:transform">
-                <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Please fill in all the required fields (First name, Last name, Email Address, Age) before submitting.</h3>
+                <h3 style="color:red" class="bg-white rounded-full text-center text-xs md:font-medium p-2 z-50">Please fill in Email Address before submitting.</h3>
             </div>';
         } else {
             $_SESSION['email'] = $email;
@@ -28,7 +28,7 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="scrollbar-hide">
+<html lang="en" class="scrollbar-hide scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,7 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
         include '../components/navbar.php';
     ?>
 
-    <div class="h-screen">
+    <div class="h-max">
         <?php
             if (isset($_GET['create-success'])) {
                 echo '<div class="absolute inset-x-[38%] inset-y-24 transform fade-in" id="error_msg">
@@ -55,11 +55,11 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
                     <h1 class="text-center text-base text-[#ffc599] font-bold md:text-3xl">Your Depression Level</h1>
                     <div class="w-11/12 h-5/6 p-4 pb-5 text-xs bg-white bg-opacity-20 rounded-xl grid grid-cols-2 md:text-xl md:w-11/12 md:h-5/6">
                         <p>Name: </p>
-                        <div class="text-center text-base md:text-3xl md:text-start"><?php echo $firstName . " " . $lastName; ?></div>
+                        <div class="text-center text-base font-bold text-yellow-400 md:text-3xl md:text-start"><?php echo $firstName . " " . $lastName; ?></div>
                         <p>Score: </p>
-                        <div class="text-center text-base md:text-3xl md:text-start"><?php echo $totalScore; ?></div>
+                        <div class="text-center text-base font-bold text-yellow-400 md:text-3xl md:text-start"><?php echo $totalScore; ?></div>
                         <p>Depression Level: </p>
-                        <div class="text-center text-base md:text-3xl md:text-start"><?php echo $depressionLevel; ?></div>
+                        <div class="text-center text-base font-bold text-yellow-400 md:text-3xl md:text-start"><?php echo $depressionLevel; ?></div>
                     </div>
                     
                     <div class="mt-10 p-4 w-1/2 text-xs bg-white bg-opacity-20 rounded-xl md:w-6/12">
@@ -83,21 +83,26 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
                 </div>
             </div>
         </div>
-
-        <!-- <div class="mx-5 my-10 text-white">
-            <h1>Did You Know</h1>
-            <div>
-                <h2>Children (10-14 years):</h2>
-                <p class="line-clamp-2 md:line-clamp-none">Depression is estimated to affect around 1.1% of children aged 10-14. While it is rare, it's not unheard of for children in this age group to experience depression.</p>
-            </div>
-        </div> -->
     </div>
+    <div class="mx-10 text-white md:mx-40 mt-32 space-y-7 text-justify">
+            <h1 class="mb-6 text-3xl font-bold text-yellow-400">Did You Know</h1>
+            <div>
+                <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Children (10-14 years):</h2>
+                <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">Depression is estimated to affect around 1.1% of children aged 10-14. While it is rare, it's not unheard of for children in this age group to experience depression.</p>
+                <a href="#bargraph" class="text-xs text-lime-300 font-serif italic underline-offset-2 hover:text-white duration-300">Look at Graph</a>
+            </div>
+            <div>
+                <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Adolescents (15-19 years): </h2>
+                <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">Approximately 2.8% of adolescents aged 15-19 are estimated to experience depression. Suicidal thoughts and behaviors tend to become more prevalent during the teenage years due to the unique challenges adolescents face, some of which may contribute to mental health issues.</p>
+                <a href="#bargraph" class="text-xs text-lime-300 font-serif italic underline-offset-2 hover:text-white duration-300">Look at Graph</a>
+            </div>
+        </div>
 
-    <div class="flex justify-center mb-10">
+    <!-- <div class="flex justify-center mb-10 mt-96" id="bargraph">
         <div class="p-5 bg-white bg-opacity-30 rounded-xl flex justify-center md:p-0 md:w-7/12 md:h-11/12">
             <canvas id="ageChart" width="300" height="150"></canvas>
         </div>
-    </div>
+    </div> -->
 
     
 
