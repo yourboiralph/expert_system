@@ -86,32 +86,32 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
     </div>
     <div class="mx-10 text-white md:mx-40 mt-32 space-y-7 text-justify">
             <h1 class="mb-6 text-3xl font-bold text-yellow-400">Did You Know</h1>
-            <div class="p-4 bg-black bg-opacity-20 rounded-xl border-2">
+            <div class="p-4 bg-black bg-opacity-60 rounded-xl">
                 <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Children (10-14 years):</h2>
                 <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">Depression is estimated to affect around 1.1% of children aged 10-14. While it is rare, it's not unheard of for children in this age group to experience depression.</p>
                 <a href="#bargraph" class="text-xs text-lime-300 font-serif italic underline-offset-2 hover:text-white duration-300">Look at Graph</a>
             </div>
-            <div class="p-4 bg-black bg-opacity-20 rounded-xl border-2">
+            <div class="p-4 bg-black bg-opacity-60 rounded-xl">
                 <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Adolescents (15-19 years):</h2>
                 <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">Approximately 2.8% of adolescents aged 15-19 are estimated to experience depression. Suicidal thoughts and behaviors tend to become more prevalent during the teenage years due to the unique challenges adolescents face, some of which may contribute to mental health issues.</p>
                 <a href="#bargraph" class="text-xs text-lime-300 font-serif italic underline-offset-2 hover:text-white duration-300">Look at Graph</a>
             </div>
-            <div class="p-4 bg-black bg-opacity-20 rounded-xl border-2">
+            <div class="p-4 bg-black bg-opacity-60 rounded-xl">
                 <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Early Adulthood (20-29 years):</h2>
                 <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">In early adulthood, the prevalence of depression can vary, but it typically falls within the range of 6% to 10%. Suicidal thoughts and behaviors remain a concern in early adulthood due to life transitions and increased responsibilities affecting mental well-being.</p>
                 <a href="#bargraph" class="text-xs text-lime-300 font-serif italic underline-offset-2 hover:text-white duration-300">Look at Graph</a>
             </div>
-            <div class="p-4 bg-black bg-opacity-20 rounded-xl border-2">
+            <div class="p-4 bg-black bg-opacity-60 rounded-xl">
                 <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Adulthood (30-64 years):</h2>
                 <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">The prevalence of depression in this age range remains relatively stable, with rates ranging from approximately 6% to 10% or higher, depending on factors like population and diagnostic criteria. Suicidal risk tends to be consistent across these years, with the prevalence of suicidal thoughts and behaviors remaining a concern.</p>
                 <a href="#bargraph" class="text-xs text-lime-300 font-serif italic underline-offset-2 hover:text-white duration-300">Look at Graph</a>
             </div>
-            <div class="p-4 bg-black bg-opacity-20 rounded-xl border-2">
+            <div class="p-4 bg-black bg-opacity-60 rounded-xl">
                 <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Older Adults (65-74 years):</h2>
                 <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">Depression rates tend to decrease in older adults compared to earlier adulthood, with an estimated prevalence of around 1-5%. While the risk of suicide decreases among older adults, it can still occur, often associated with factors such as social isolation and health issues.</p>
                 <a href="#bargraph" class="text-xs text-lime-300 font-serif italic underline-offset-2 hover:text-white duration-300">Look at Graph</a>
             </div>
-            <div class="p-4 bg-black bg-opacity-20 rounded-xl border-2">
+            <div class="p-4 bg-black bg-opacity-60 rounded-xl">
                 <h2 class="text-base font-bold text-[#ffc599] md:text-xl">Elderly (75-90 years):</h2>
                 <p class="text-xs md:text-base line-clamp-2 md:line-clamp-none">Among the very elderly population, the prevalence of depression remains relatively low but can vary. Depression rates for those aged 75-90 tend to range from 1-5%, with variations influenced by factors such as living conditions and physical health. Suicidal thoughts and behaviors may continue to decrease in the very elderly population, but they can still be a concern, especially among those facing significant health problems or bereavement.</p>
             </div>
