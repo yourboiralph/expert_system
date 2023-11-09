@@ -3,7 +3,7 @@ session_start();
 
 // base class
 abstract class User {
-    protected $firstname = 'anonymous';
+    protected $firstname = 'Anonymous';
     protected $lastname = null;
     protected $age = null;
     protected $email = null;

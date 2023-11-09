@@ -34,7 +34,7 @@ $depressionLevel = $user['depressionLevel'];
         ?>
         <div class="flex justify-center">
             <div class="mt-64 w-3/6 h-60 bg-white bg-opacity-20 flex justify-center rounded-xl">
-                <div class="p-4 w-full text-white text-xs md:space-x-36 md:space-y-5 md:text-3xl">
+                <div class="p-4 w-full text-white text-xs md:px-10 md:space-y-5 md:text-3xl">
                     <h1 class="flex justify-center text-[#ffc599] font-bold">Your Depression Level</h1>
                     <p>Name: <?php echo $firstName . " " . $lastName; ?></p>
                     <p>Score: <?php echo $totalScore; ?></p>
@@ -44,8 +44,8 @@ $depressionLevel = $user['depressionLevel'];
         </div>
     </div>
 
-    <div class="flex justify-center">
-        <div class="7/12 h-80 bg-black bg-opacity-30 rounded-xl flex justify-center">
+    <div class="flex justify-center mb-10">
+        <div class="bg-black bg-opacity-30 rounded-xl flex justify-center md:w-7/12 md:h-11/12">
             <canvas id="ageChart" width="300" height="150"></canvas>
         </div>
     </div>
