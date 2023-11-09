@@ -44,46 +44,53 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
     <div class="h-screen">
         <?php
             if (isset($_GET['create-success'])) {
-                echo '<div class="absolute inset-x-[38%] inset-y-24 transform" id="error_msg">
+                echo '<div class="absolute inset-x-[38%] inset-y-24 transform fade-in" id="error_msg">
                         <h3 class="bg-white rounded-full text-green-500 text-center font-medium p-2 z-50 text-xs">Successfully created!</h3>
                     </div>';
             }
         ?>
-        <div class="flex justify-center">
+        <div class="flex justify-center fade-in">
             <div class="mt-44 w-11/12 h-60 flex justify-center rounded-xl md:mt-64 md:w-3/6 md:h-60">
                 <div class="p-4 w-full text-white md:px-10 md:space-y-5 flex flex-col items-center">
                     <h1 class="text-center text-base text-[#ffc599] font-bold md:text-3xl">Your Depression Level</h1>
-                    <div class="w-11/12 h-5/6 p-4 pb-10 text-xs bg-white bg-opacity-20 rounded-xl grid grid-cols-2 md:text-xl md:w-11/12 md:h-5/6">
+                    <div class="w-11/12 h-5/6 p-4 pb-5 text-xs bg-white bg-opacity-20 rounded-xl grid grid-cols-2 md:text-xl md:w-11/12 md:h-5/6">
                         <p>Name: </p>
                         <div class="text-center text-base md:text-3xl md:text-start"><?php echo $firstName . " " . $lastName; ?></div>
                         <p>Score: </p>
                         <div class="text-center text-base md:text-3xl md:text-start"><?php echo $totalScore; ?></div>
                         <p>Depression Level: </p>
                         <div class="text-center text-base md:text-3xl md:text-start"><?php echo $depressionLevel; ?></div>
-
-                        <button id="openModal">Send Email</button>
                     </div>
-                    <?php if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') { ?>
-                        <form action="" method="POST">
-                        <label for="email">Email</label><br>
-                        <input type="email" id="email" name="email" class="w-62 px-4 mt-1 rounded-lg border-2 border-yellow-500 bg-transparent" oninput="validateInput(this)" require><br>
-                        <input type="submit" value="Send Email" class="p-2 rounded-lg cursor-pointer bg-yellow-500 text-white hover:bg-opacity-40 hover:bg-yellow-500 hover:scale-110">
-                        </form>
-                    <?php
-                    }elseif (isset($_GET['visibility']) && $_GET['visibility'] == 'public'){?>
-                        <a href="../php/email-send.php">Send Email</a><br />
-                    <?php } ?>
+                    
+                    <div class="mt-10 p-4 w-1/2 text-xs bg-white bg-opacity-20 rounded-xl md:w-6/12">
+                        <h2 class="text-center md:text-base">Would you like a copy of your result?</h2>
+                        <div class="flex justify-center"><button class="text-[#ffc599] font-bold md:text-lg hover:text-green-400 duration-500" onclick="openModal()">Input Email</button></div>
+                        <div id="myModal" class="modal">
+                            <div class="w-56 p-4 mt-64 mx-auto bg-[#99572C] rounded-xl md:w-3/12 md:p-10 md:mt-96 fade-in">
+                                <?php if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') { ?>
+                                    <form action="" method="POST">
+                                        <label for="email" class="text-base font-medium md:text-3xl md:font-bold">Email</label><br>
+                                        <input type="email" id="email" name="email" class="mt-4 py-1 px-4 text-black rounded-xl md:w-64"><br>
+                                        <input type="submit" value="Send Email" class="mt-4 font-semibold md:text-lg md:font-bold hover:text-green-400 duration-500">
+                                    </form>
+                                    <button class="text-slate-300 float-right md:text-base md:font-semibold hover:text-red-500 duration-500" onclick="closeModal()">Close</button>
+                                <?php } elseif (isset($_GET['visibility']) && $_GET['visibility'] == 'public') { ?>
+                                <a href="../php/email-send.php">Send Email</a><br />
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="mx-5 my-10 text-white">
+        <!-- <div class="mx-5 my-10 text-white">
             <h1>Did You Know</h1>
             <div>
                 <h2>Children (10-14 years):</h2>
                 <p class="line-clamp-2 md:line-clamp-none">Depression is estimated to affect around 1.1% of children aged 10-14. While it is rare, it's not unheard of for children in this age group to experience depression.</p>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="flex justify-center mb-10">
@@ -121,6 +128,17 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
             }
         }
         
+        .modal {
+            display: none;
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.4);
+        }
     </style>
 
     <script>
@@ -128,10 +146,10 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
     var ageData = {
         "Children (10-14 years)": 1.1,
         "Adolescents (15-19 years)": 2.8,
-        "Early Adulthood (20-29 years)": 8,  // Taking an average of 6-10%
-        "Adulthood (30-64 years)": 8,        // Taking an average of 6-10%
-        "Older Adults (65-74 years)": 3,      // Taking an average of 1-5%
-        "Elderly (75-90 years)": 3            // Taking an average of 1-5%
+        "Early Adulthood (20-29 years)": 8,  
+        "Adulthood (30-64 years)": 8,        
+        "Older Adults (65-74 years)": 3,      
+        "Elderly (75-90 years)": 3            
     };
 
     // Get the canvas element
@@ -176,7 +194,15 @@ if (isset($_GET['visibility']) && $_GET['visibility'] == 'private') {
     });
     setTimeout(() => {
         error_msg.classList.add('hidden');
-    }, 2500);
+    }, 1500);
+
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
     </script>
 </body>
 </html>
